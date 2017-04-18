@@ -12,7 +12,7 @@
        data-show-toggle="true"
        data-toggle="table"
        data1-url="data1.json"
-       data-height="700"
+      
        data-pagination="true" 
        data-search="true"
        data-sort-order="desc"

@@ -8,7 +8,7 @@ class SubCategory extends Model
 {
     //
     protected $table = "SubCategory";
-    public $fillable = ['title' ,'category_id'];
+    public $fillable = ['SubCategory' ,'category_id'];
     public function Category()
 {
     return $this->belongsTo('\App\Category');

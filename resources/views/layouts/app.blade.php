@@ -72,6 +72,10 @@
                 transition: all 0.60s ease;
 
             }
+            .logout , .logout:hover,.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+                 background: #335C7D !important;
+            }
+            
             .sticky {
                 position: fixed;
                 font-size: 24px;
@@ -90,6 +94,13 @@
                         margin-top: 62px;*/
 
 
+            }
+            .searchForm , .login , .register{
+                margin-top: 65px;
+            }
+            .registertitle, .logintitle{
+                 margin-top: 130px;
+                 color:  #335C7D;
             }
             header nav ul li a {
                 line-height: 150px;
@@ -153,8 +164,7 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="nav navbar-nav">
                             <li><a href="{{ url('/') }}">Home</a></li>
-                            <li><a href="{{ route('users.index') }}">Users</a></li>
-                            <li><a href="{{ route('roles.index') }}">Roles</a></li>
+                            
                             <li><a href="{{ route('posts.index') }}">Posts</a></li>
                         </ul>
 
@@ -170,7 +180,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu logout" role="menu">
                                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                 </ul>
                             </li>
@@ -270,16 +280,7 @@ function loadPaginatedSelected(url)
 
 }
 
-$('.srt').click(function () {
-    var ty = $(this).data('val');
-    var ny = $(this).html();
-    $('.ppy').html(ny + ' <span class="caret"></span>');
-    if (ty == 'title') {
-        $('#search_field').attr('placeholder', 'search_posts_by_title');
-    } else if (ty == 'Category') {
-        $('#search_field').attr('placeholder', 'search_posts_by_Category');
-    }
-});
+
 $(window).scroll(function () {
     if ($(this).scrollTop() > 1) {
         $('.navbar-static-top').addClass("sticky");
@@ -287,6 +288,19 @@ $(window).scroll(function () {
     else {
         $('.navbar-static-top').removeClass("sticky");
     }
+});
+ $('.searchbutton').on('click', function () {
+
+       // event.preventDefault();
+
+$.ajax({
+    dataType: "json",
+    url: '/',
+    data: {keywordsearch: $('#search_field').val()},
+    success: function (result) {
+        console.log(result);
+    },
+});
 });
     </script>
 

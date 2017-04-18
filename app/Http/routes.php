@@ -12,16 +12,26 @@
  */
 
 
-Route::get('/{page?}',
+Route::get('/',
     ['as'   => 'home',
      'uses' => 'HomeController@index'
-    ])->where('page', '[1-9]+[0-9]*');
+    ]);
 Route::auth();
 
 Route::group(['middleware' => ['auth']], function() {
+Route::get('/dashboard',
+    ['as'   => 'dashboard',
+     'uses' => 'UserController@index',
+        'middleware' => ['role:admin']
+    ]);
 
-
-    Route::resource('users', 'UserController');
+  Route::get('users', ['as' => 'users.index', 'uses' => 'UserController@index' , 'middleware' => ['role:admin']]);
+    Route::get('users/create', ['as' => 'users.create', 'uses' => 'UserController@create', 'middleware' => ['role:admin']]);
+    Route::post('users/create', ['as' => 'users.store', 'uses' => 'UserController@store', 'middleware' => ['role:admin']]);
+    Route::get('users/{id}', ['as' => 'users.show', 'uses' => 'UserController@show']);
+    Route::get('users/{id}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit', 'middleware' => ['role:admin']]);
+    Route::patch('users/{id}', ['as' => 'users.update', 'uses' => 'UserController@update', 'middleware' => ['role:admin']]);
+    Route::delete('users/{id}', ['as' => 'users.destroy', 'uses' => 'UserController@destroy', 'middleware' => ['role:admin']]);
 
     // For Role
 
@@ -57,9 +67,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('SubCategory/create', ['as' => 'SubCategory.create', 'uses' => 'SubCategoryController@create']);
     Route::post('SubCategory/create', ['as' => 'SubCategory.store', 'uses' => 'SubCategoryController@store']);
     Route::get('SubCategory/{id}', ['as' => 'SubCategory.show', 'uses' => 'SubCategoryController@show']);
-    Route::get('SubCategory/{id}/edit', ['as' => 'SubCategory.edit', 'uses' => 'SubCategoryController@edit']);
-    Route::patch('SubCategory/{id}', ['as' => 'SubCategory.update', 'uses' => 'SubCategoryController@update']);
-    Route::delete('SubCategory/{id}', ['as' => 'SubCategory.destroy', 'uses' => 'SubCategoryController@destroy']);
+    Route::get('SubCategory/{id}/edit', ['as' => 'SubCategory.edit', 'uses' => 'SubCategoryController@edit','middleware' => ['permission:edit-SubCategory']]);
+    Route::patch('SubCategory/{id}', ['as' => 'SubCategory.update', 'uses' => 'SubCategoryController@update','middleware' => ['permission:edit-SubCategory']]);
+    Route::delete('Category/{id}', ['as' => 'SubCategory.destroy', 'uses' => 'SubCategoryController@destroy', 'middleware' => ['permission:delete-SubCategory']]);
     Route::post('posts/comment/{id}', ['as' => 'posts.comment.store', 'uses' => 'PostsController@comment']);
    
 

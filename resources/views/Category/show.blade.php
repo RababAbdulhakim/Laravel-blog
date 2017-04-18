@@ -17,7 +17,7 @@
 
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                {{ $Category->title }}
+                {{ $Category->Category }}
             </div>
         </div>
 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -37,7 +37,7 @@
                                             @foreach($Subcategory as $Subcat)
 
                     <li>
-                        <a class="btn btn-link" href="{{ route('SubCategory.show',$Subcat->id) }}"><h4> {{ $Subcat->title }}</h4></a>
+                        <a class="btn btn-link" href="{{ route('SubCategory.show',$Subcat->id) }}"><h4> {{ $Subcat->SubCategory }}</h4></a>
                     </li>
                 </ul>
                         @endforeach

@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+@role('admin')
 <section class="content-header">
 	<h1>
 	Dashboard
@@ -56,4 +57,5 @@
 
 	</div>
 </section>
+@endrole
 @endsection

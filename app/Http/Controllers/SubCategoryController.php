@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\SubCategory;
 use App\Category;
 use App\Http\Requests;
-
+use DB;
 class SubCategoryController extends Controller
 {
     //
@@ -14,10 +14,11 @@ class SubCategoryController extends Controller
     //
     public function index(Request $request)
     {
-        $SubCategories = SubCategory::All();
-     
-         $Categories = Category::All();
-        return view('SubCategory.index',compact('Categories' , 'SubCategories')) ;
+        //$SubCategories = SubCategory::All();
+     $SubCategories = SubCategory::with('Category')
+                    ->get();
+    
+        return view('SubCategory.index',compact( 'SubCategories')) ;
     }
 
     /**

@@ -28,11 +28,11 @@
 		<div class="wrapper">
 			<header class="main-header">
 				<!-- Logo -->
-				<a href="{{url('dashboard')}}" class="logo">
+				<a href="{{url('/')}}" class="logo">
 					<!-- mini logo for sidebar mini 50x50 pixels -->
 					<span class="logo-mini"><b>E</b>CM</span>
 					<!-- logo for regular state and mobile devices -->
-					<span class="logo-lg"><b>Admin</b>LTE</span>
+					<span class="logo-lg">Blog</span>
 				</a>
 				<!-- Header Navbar: style can be found in header.less -->
 				<nav class="navbar navbar-static-top">
@@ -42,23 +42,7 @@
 					</a>
 					<div class="navbar-custom-menu">
 						<ul class="nav navbar-nav">
-							<!-- Notification Navbar List-->
-							<li class="dropdown notifications-menu">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-bell-o"></i>
-									<span class="label notification-label">new</span>
-								</a>
-								<ul class="dropdown-menu">
-									<li class="header">Your notifications</li>
-									<li>
-										<!-- inner menu: contains the actual data -->
-										<ul class="menu notification-menu">
-										</ul>
-									</li>
-									<li class="footer"><a href="#">View all</a></li>
-								</ul>
-							</li>
-							<!-- END notification navbar list-->
+						
 							<li class="dropdown user user-menu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<img src="http://ahloman.net/wp-content/uploads/2013/06/user.jpg" class="user-image" alt="User Image">
@@ -75,15 +59,7 @@
 									<!-- Menu Body -->
 									<li class="user-body">
 										<div class="row">
-											<div class="col-xs-4 text-center">
-												<a href="#">Followers</a>
-											</div>
-											<div class="col-xs-4 text-center">
-												<a href="#">Sales</a>
-											</div>
-											<div class="col-xs-4 text-center">
-												<a href="#">Friends</a>
-											</div>
+											
 										</div>
 										<!-- /.row -->
 									</li>
@@ -94,8 +70,7 @@
 										</div>
 										<div class="pull-right">
 											<a href="{{url('logout')}}" class="btn btn-default btn-flat"
-											onclick="event.preventDefault();
-													 document.getElementById('logout-form').submit();">Sign out</a>
+											onclick="document.getElementById('logout-form').submit();">Logout out</a>
 
 	                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 	                                            {{ csrf_field() }}

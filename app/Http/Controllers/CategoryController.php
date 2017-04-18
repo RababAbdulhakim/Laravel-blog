@@ -17,9 +17,11 @@ class CategoryController extends Controller
     {
          $posts = Posts::with('comments')->get();
        
-       $Categories = Category::with('SubCategory')->paginate(5);
+       $Categories = Category::with('SubCategories')->paginate(5);
        //$Categories = Category::orderBy('id','DESC')->paginate(5);
+       
         return view('Category.index',compact('Categories')) ;
+        
     }
 
     /**
@@ -63,7 +65,7 @@ class CategoryController extends Controller
     {
         $Category = Category::find($id);
          $Subcategory = DB::table('SubCategory')
-                    ->where('cat_id', $id)
+                    ->where('category_id', $id)
                     ->get();
         return view('Category.show',compact('Category' , 'Subcategory'));
     }
